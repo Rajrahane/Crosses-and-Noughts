@@ -1,10 +1,12 @@
-package com.project.raj.tictactoe;
+package com.project.raj.tictactoe.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.project.raj.tictactoe.R;
 
 public class MainActivity extends AppCompatActivity {
     Button playButton;
@@ -22,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
        playButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-                Intent gameIntent;
-               gameIntent = new Intent(view.getContext(),GameActivity.class);
-               startActivity(gameIntent);
+                Intent setgamePlayersIntent;
+               setgamePlayersIntent = new Intent(view.getContext(),GamePlayersActivity.class);
+               startActivity(setgamePlayersIntent);
            }
        });
     }
