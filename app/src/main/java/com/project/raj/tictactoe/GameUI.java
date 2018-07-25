@@ -9,7 +9,7 @@ public class GameUI {
     private Board board;
     private AI ai;
     private int turn;
-    GameUI(){
+    public GameUI(){
         board=new Board();
         ai=new AI();
         turn=0;

@@ -1,10 +1,13 @@
-package com.project.raj.tictactoe;
+package com.project.raj.tictactoe.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.project.raj.tictactoe.GameUI;
+import com.project.raj.tictactoe.R;
 
 import java.util.Arrays;
 
@@ -40,10 +43,12 @@ public class GameActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Button callingButton=(Button)view;
                     callingButton.setEnabled(false);
+                    callingButton.setBackgroundResource(android.R.drawable.btn_radio);
                     callingButton.setText("O");//change button settings here
                     int movePlayedByAI=newGame.playMove(findIndexOf(callingButton));
                     if(newGame.getTurn()!= Board.TOTALMOVES+1){
                         GameMoveButton[movePlayedByAI].setEnabled(false);
+                        GameMoveButton[movePlayedByAI].setBackgroundResource(android.R.drawable.ic_delete);
                         GameMoveButton[movePlayedByAI].setText("X");
                     }    //valid move was played by ai
                     if(newGame.evaluateGame()==Board.COMPUTERWINS){     //ai wins

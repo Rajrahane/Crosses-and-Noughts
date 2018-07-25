@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Crosses and Noughts</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="select_players">Select Player</string>
 </resources>
