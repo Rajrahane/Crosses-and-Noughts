@@ -17,8 +17,8 @@ public class PlayersDialogFragment extends DialogFragment{
     private int playerType;
 
     public interface PlayersDialogListener{
-        void onDialogPositiveClick(DialogFragment dialog);
-        void onDialogNegativeClick(DialogFragment dialog);
+        void onPlayersDialogPositiveClick(DialogFragment dialog,int playerType);
+        void onPlayersDialogNegativeClick(DialogFragment dialog);
     }
     PlayersDialogListener mListener;
     @Override
@@ -38,15 +38,15 @@ public class PlayersDialogFragment extends DialogFragment{
             public void onClick(DialogInterface dialogInterface, int i) {
                 playerType=i;
             }
-        }).setPositiveButton("Play", new DialogInterface.OnClickListener() {
+        }).setPositiveButton("Next", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                mListener.onDialogPositiveClick(PlayersDialogFragment.this);
+                mListener.onPlayersDialogPositiveClick(PlayersDialogFragment.this,playerType);
             }
         }).setNegativeButton("Exit", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                mListener.onDialogNegativeClick(PlayersDialogFragment.this);
+                mListener.onPlayersDialogNegativeClick(PlayersDialogFragment.this);
             }
         });
         return builder.create();

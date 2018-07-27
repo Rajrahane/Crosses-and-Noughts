@@ -19,7 +19,8 @@
         <activity
             android:name=".activities.GameActivity"
             android:parentActivityName=".activities.MainActivity"></activity>
-        <activity android:name=".activities.GamePlayersActivity"></activity>
+        <activity android:name=".activities.GamePlayersActivity"
+            android:parentActivityName=".activities.MainActivity"></activity>
     </application>
 
 </manifest>
