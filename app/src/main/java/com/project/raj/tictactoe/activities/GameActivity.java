@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.project.raj.tictactoe.GameUI;
 import com.project.raj.tictactoe.R;
 import com.project.raj.tictactoe.UserProfile;
+import com.raj.tictactoe.constants.GameConstants;
 import com.raj.tictactoe.model.Board;
 
 public class GameActivity extends AppCompatActivity {
@@ -35,6 +36,11 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         init();
         setUpListeners();
+        if(user.getComputerChanceNo()== GameConstants.FIRST_CHANCE){
+            int movePlayedByAI=newGame.playRandomCorner(user);
+            GameMoveButton[movePlayedByAI].setEnabled(false);
+            GameMoveButton[movePlayedByAI].setBackgroundResource(user.getComputerIcon());
+        }
     }
 
     void setUpListeners() {
@@ -48,7 +54,7 @@ public class GameActivity extends AppCompatActivity {
                     callingButton.setBackgroundResource(user.getPlayerIcon());
                     //callingButton.setText("O");//change button settings here
                     int movePlayedByAI=newGame.playMove(findIndexOf(callingButton),user);
-                    if(newGame.getTurn()!= Board.TOTAL_MOVES+1){
+                    if(newGame.getTurn()<= Board.TOTAL_MOVES){
                         GameMoveButton[movePlayedByAI].setEnabled(false);
                         GameMoveButton[movePlayedByAI].setBackgroundResource(user.getComputerIcon());
                         //GameMoveButton[movePlayedByAI].setText("X");

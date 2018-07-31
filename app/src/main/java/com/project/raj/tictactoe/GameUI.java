@@ -19,34 +19,40 @@ public class GameUI {
         board.setBoardIndex(i,user.getPlayerMoveValue());
         int movePlayed=-1;
         if(turn<= Board.TOTAL_MOVES){
-            switch (turn){
-                case 2:{
-                    if(!board.isBlank(4)){                        //center taken
-                        movePlayed=ai.getRandomCorner()-1;
-                        board.setBoardIndex(movePlayed, user.getComputerMoveValue());//take any corner
-                    }
-                    else if(!board.isBlank(0)||!board.isBlank(2)||!board.isBlank(6)||!board.isBlank(8)){    //corner taken
-                        movePlayed=4;
-                        board.setBoardIndex(movePlayed, user.getComputerMoveValue());                               //take center
-                    }
-                    else{                                   //edge taken
-                        if(!board.isBlank(1)||!board.isBlank(5)){
-                            movePlayed=2;
-                            board.setBoardIndex(movePlayed, user.getComputerMoveValue());
+            if(user.getComputerChanceNo()== com.raj.tictactoe.constants.GameConstants.SECOND_CHANCE){   //comp plays second
+                switch (turn){
+                    case 2:{
+                        if(!board.isBlank(4)){                        //center taken
+                            movePlayed=ai.getRandomCorner()-1;
+                            board.setBoardIndex(movePlayed, user.getComputerMoveValue());//take any corner
                         }
-                        else{
-                            movePlayed=6;
-                            board.setBoardIndex(movePlayed, user.getComputerMoveValue());
+                        else if(!board.isBlank(0)||!board.isBlank(2)||!board.isBlank(6)||!board.isBlank(8)){    //corner taken
+                            movePlayed=4;
+                            board.setBoardIndex(movePlayed, user.getComputerMoveValue());                               //take center
                         }
+                        else{                                   //edge taken
+                            if(!board.isBlank(1)||!board.isBlank(5)){
+                                movePlayed=2;
+                                board.setBoardIndex(movePlayed, user.getComputerMoveValue());
+                            }
+                            else{
+                                movePlayed=6;
+                                board.setBoardIndex(movePlayed, user.getComputerMoveValue());
+                            }
+                        }
+                        break;
                     }
-                    break;
+                    case 4:
+                    case 6:
+                    case 8:{
+                        movePlayed=ai.findBestMove(board,user.getPlayer(),user.getComputer());
+                        board.setBoardIndex(movePlayed, user.getComputerMoveValue());
+                    }
                 }
-                case 4:
-                case 6:
-                case 8:{
-                    movePlayed=ai.findBestMove(board,user.getPlayer(),user.getComputer());
-                    board.setBoardIndex(movePlayed, user.getComputerMoveValue());
-                }
+            }
+            else{                                                                       //comp plays first,to be implemented
+                movePlayed=ai.findBestMove(board,user.getPlayer(),user.getComputer());
+                board.setBoardIndex(movePlayed,user.getComputerMoveValue());
             }
         }
         return movePlayed;
@@ -56,5 +62,10 @@ public class GameUI {
     }
     public int evaluateGame(UserProfile user){
         return board.evaluateBoard(user.getPlayer(),user.getComputer());
+    }
+    public int playRandomCorner(UserProfile user){
+        int movePlayedByAI=ai.getRandomCorner()-1;
+        board.setBoardIndex(movePlayedByAI,user.getComputerMoveValue());
+        return movePlayedByAI;
     }
 }

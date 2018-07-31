@@ -49,5 +49,8 @@ public class UserProfile {
     public Player getComputer() {
         return computer;
     }
+    public int getComputerChanceNo(){
+        return computer.getChanceNo();
+    }
 }
 
